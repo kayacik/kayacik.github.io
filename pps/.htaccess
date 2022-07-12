@@ -1,0 +1,4 @@
+AuthName "Secure Area"
+AuthType Basic
+AuthUserFile /var/www/html/pps/.htpasswd
+require valid-user

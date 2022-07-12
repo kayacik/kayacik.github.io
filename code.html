@@ -1,0 +1,407 @@
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Gunes Kayacik - Code</title>
+<meta name="description" content="Gunes's Personal Homepage">
+<meta name="author" content="Gunes Kayacik">
+<!--Mobile specific meta goodness :)-->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--css-->
+<link rel="stylesheet" href="./styles.css"> 
+<link rel="shortcut icon" href="./images/favicon.ico">
+</head>
+
+<body id="home">
+<div class="wrapper">  
+
+<header>      
+<h1 class="logo"><a href="./index.html">G&#252;ne&#351; Kayac&#305;k</a></h1>  
+<a class="to_nav" href="#primary_nav">Menu</a>
+</header>
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+<article>
+<h2>Code</h2>
+<p>Some of the projects that I worked on over the years can be found on <a href="https://github.com/kayacik">Github</a>. Here are a few
+mini recipes for using the Github projects for various tasks.</P>
+
+<p>If you end up downloading and using the code or if you encounter any problems when running it on your host, please let me know.</p>
+
+
+</article>
+
+<article>
+<h3>Getting mobile devices to recognize users (using Kernel Density Estimators)</h3>
+If you'd like to see how your mobile device learns your behavior from sensor data, <a href="https://github.com/kayacik/userprofiler">userprofiler project</a> from Github can give you a gentle start. First, let's get the latest version from Github:
+
+<pre class="prettyprint">
+kayacik@mbp~/Codes/Git2>git clone https://github.com/kayacik/userprofiler.git
+Cloning into 'userprofiler'...
+remote: Counting objects: 31, done.
+remote: Compressing objects: 100% (18/18), done.
+remote: Total 31 (delta 8), reused 31 (delta 8), pack-reused 0
+Unpacking objects: 100% (31/31), done.
+Checking connectivity... done.
+</pre>
+
+<p>The code comes with the a sample data from one user (i.e. Gunes). To run the userprofiler on the data run:</p>
+
+<pre class="prettyprint">
+kayacik@mbp~/Codes/Git2/userprofiler>./batch-profile-gcu.sh
++ data=./data
++ model=./profiles
++ fragmenter=./fragment-data-batch.py
++ profiler=./profiler.py
++ percentile=./percentile.py
++ compare=./compare-profiles.py
++ threshold=90
++ maxdaycount=2000
++ rm -rf ./profiles
++ mkdir -p ./profiles
+++ ls -1 ./data
+++ egrep .gz
++ for file in '`ls -1 $data | egrep '\''.gz'\''`'
++ mkdir -p ./profiles/user2.data.gz
++ dayfiles=./data/user2.data.gz.days
++ rm -rf ./data/user2.data.gz.days
++ mkdir ./data/user2.data.gz.days
++ gzip -cd ./data/user2.data.gz
++ ./fragment-data-batch.py day ./data/user2.data.gz.days
++ cur=
++ pre=
++ daycount=0
+++ ls -1 ./data/user2.data.gz.days
+++ sort
++ for dayfile in '`ls -1 $dayfiles | sort`'
++ ((  daycount += 1  ))
++ '[' 1 -gt 2000 ']'
++ cur=day001
++ echo '[INFO] current=day001'
+[INFO] current=day001
++ rm -rf ./profiles/user2.data.gz/day001
++ '[' -z '' ']'
++ cat ./data/user2.data.gz.days/day001
++ ./profiler.py -o ./profiles/user2.data.gz/day001/
+[ERROR] Error in line 2976: cannot convert float infinity to integer. Skipping...
+[ERROR] >>>1381274560	GCU.NoiseProbe	gunes	08-10-2013	16:22:40	-inf	-inf	-inf<<<
+[INFO] Number of temporal patterns : 129
+[INFO] Number of spatial  patterns : 129
++ echo '[INFO] comfort='
+[INFO] comfort=
++ pre=day001
++ for dayfile in '`ls -1 $dayfiles | sort`'
++ ((  daycount += 1  ))
++ '[' 2 -gt 2000 ']'
++ cur=day002
++ echo '[INFO] current=day002'
+[INFO] current=day002
++ rm -rf ./profiles/user2.data.gz/day002
++ '[' -z day001 ']'
++ cat ./data/user2.data.gz.days/day002
++ ./profiler.py -i ./profiles/user2.data.gz/day001/ -o ./profiles/user2.data.gz/day002/
+[INFO] 2016-05-09 21:01:35.587961 Reading T model from file.
+[INFO] 2016-05-09 21:01:35.644064 Reading S model from file.
+[INFO] Number of temporal patterns : 128
+[INFO] Number of spatial  patterns : 128
++ cat ./data/user2.data.gz.days/day002
++ ./profiler.py -d -i ./profiles/user2.data.gz/day001/
++ egrep -v '(INFO|ERROR)'
+++ cat ./profiles/user2.data.gz/day002/comfort.data
+++ awk '{print $1}'
+++ ./percentile.py
+++ egrep '90\s'
+++ awk '{print $2}'
++ comf=0.436550243704
++ echo -e 'day002\t0.436550243704'
++ ./compare-profiles.py ./profiles/user2.data.gz/day001/ ./profiles/user2.data.gz/day002/
++ echo '[INFO] comfort=0.436550243704'
+[INFO] comfort=0.436550243704
++ pre=day002
++ for dayfile in '`ls -1 $dayfiles | sort`'
++ ((  daycount += 1  ))
++ '[' 3 -gt 2000 ']'
++ cur=day003
++ echo '[INFO] current=day003'
+[INFO] current=day003
++ rm -rf ./profiles/user2.data.gz/day003
++ '[' -z day002 ']'
++ cat ./data/user2.data.gz.days/day003
++ ./profiler.py -i ./profiles/user2.data.gz/day002/ -o ./profiles/user2.data.gz/day003/
+[INFO] 2016-05-09 21:01:41.673265 Reading T model from file.
+[INFO] 2016-05-09 21:01:41.757657 Reading S model from file.
+[INFO] Number of temporal patterns : 128
+[INFO] Number of spatial  patterns : 128
++ cat ./data/user2.data.gz.days/day003
++ ./profiler.py -d -i ./profiles/user2.data.gz/day002/
++ egrep -v '(INFO|ERROR)'
+++ cat ./profiles/user2.data.gz/day003/comfort.data
+++ awk '{print $1}'
+++ ./percentile.py
+++ egrep '90\s'
+++ awk '{print $2}'
++ comf=0.61174941379
++ echo -e 'day003\t0.61174941379'
++ ./compare-profiles.py ./profiles/user2.data.gz/day002/ ./profiles/user2.data.gz/day003/
++ echo '[INFO] comfort=0.61174941379'
+[INFO] comfort=0.61174941379
++ pre=day003
++ for dayfile in '`ls -1 $dayfiles | sort`'
++ ((  daycount += 1  ))
++ '[' 4 -gt 2000 ']'
++ cur=day004
++ echo '[INFO] current=day004'
+[INFO] current=day004
++ rm -rf ./profiles/user2.data.gz/day004
++ '[' -z day003 ']'
++ cat ./data/user2.data.gz.days/day004
++ ./profiler.py -i ./profiles/user2.data.gz/day003/ -o ./profiles/user2.data.gz/day004/
+[INFO] 2016-05-09 21:01:49.297570 Reading T model from file.
+[INFO] 2016-05-09 21:01:49.406813 Reading S model from file.
+[INFO] Number of temporal patterns : 128
+[INFO] Number of spatial  patterns : 128
++ cat ./data/user2.data.gz.days/day004
++ ./profiler.py -d -i ./profiles/user2.data.gz/day003/
++ egrep -v '(INFO|ERROR)'
+++ cat ./profiles/user2.data.gz/day004/comfort.data
+++ awk '{print $1}'
+++ ./percentile.py
+++ egrep '90\s'
+++ awk '{print $2}'
++ comf=0.664578882045
++ echo -e 'day004\t0.664578882045'
++ ./compare-profiles.py ./profiles/user2.data.gz/day003/ ./profiles/user2.data.gz/day004/
++ echo '[INFO] comfort=0.664578882045'
+[INFO] comfort=0.664578882045
++ pre=day004
++ for dayfile in '`ls -1 $dayfiles | sort`'
++ ((  daycount += 1  ))
++ '[' 5 -gt 2000 ']'
++ cur=day005
++ echo '[INFO] current=day005'
+[INFO] current=day005
++ rm -rf ./profiles/user2.data.gz/day005
++ '[' -z day004 ']'
++ cat ./data/user2.data.gz.days/day005
++ ./profiler.py -i ./profiles/user2.data.gz/day004/ -o ./profiles/user2.data.gz/day005/
+[INFO] 2016-05-09 21:01:58.426858 Reading T model from file.
+[INFO] 2016-05-09 21:01:58.561212 Reading S model from file.
+[INFO] Number of temporal patterns : 129
+[INFO] Number of spatial  patterns : 129
++ cat ./data/user2.data.gz.days/day005
++ ./profiler.py -d -i ./profiles/user2.data.gz/day004/
++ egrep -v '(INFO|ERROR)'
+++ cat ./profiles/user2.data.gz/day005/comfort.data
+++ awk '{print $1}'
+++ ./percentile.py
+++ egrep '90\s'
+++ awk '{print $2}'
++ comf=0.692375880488
++ echo -e 'day005\t0.692375880488'
++ ./compare-profiles.py ./profiles/user2.data.gz/day004/ ./profiles/user2.data.gz/day005/
++ echo '[INFO] comfort=0.692375880488'
+[INFO] comfort=0.692375880488
++ pre=day005
++ for dayfile in '`ls -1 $dayfiles | sort`'
++ ((  daycount += 1  ))
++ '[' 6 -gt 2000 ']'
++ cur=day006
++ echo '[INFO] current=day006'
+[INFO] current=day006
++ rm -rf ./profiles/user2.data.gz/day006
++ '[' -z day005 ']'
++ cat ./data/user2.data.gz.days/day006
++ ./profiler.py -i ./profiles/user2.data.gz/day005/ -o ./profiles/user2.data.gz/day006/
+[INFO] 2016-05-09 21:02:09.145440 Reading T model from file.
+[INFO] 2016-05-09 21:02:09.321261 Reading S model from file.
+[INFO] Number of temporal patterns : 128
+[INFO] Number of spatial  patterns : 128
++ cat ./data/user2.data.gz.days/day006
++ ./profiler.py -d -i ./profiles/user2.data.gz/day005/
++ egrep -v '(INFO|ERROR)'
+++ cat ./profiles/user2.data.gz/day006/comfort.data
+++ awk '{print $1}'
+++ ./percentile.py
+++ egrep '90\s'
+++ awk '{print $2}'
++ comf=0.690288128687
++ echo -e 'day006\t0.690288128687'
++ ./compare-profiles.py ./profiles/user2.data.gz/day005/ ./profiles/user2.data.gz/day006/
++ echo '[INFO] comfort=0.690288128687'
+[INFO] comfort=0.690288128687
++ pre=day006
++ rm -rf ./data/user2.data.gz.days
+</pre>
+
+<p>This simulates an incremental training scenario where the user profile is built every day. 7 days is not sufficient to observe how the profile settles but you can see that the comfort score increases. </p>
+
+<pre class="prettyprint">
+[INFO] comfort=0.436550243704
+[INFO] comfort=0.61174941379
+[INFO] comfort=0.664578882045
+[INFO] comfort=0.692375880488
+[INFO] comfort=0.690288128687
+</pre>
+<p>Comfort score is an aggregated score from many sensor profiles that is between 0 and 1. Higher scores indicate the device is beginning to learn the user behavior hence getting more familiar with the user's behavior.</p>
+
+<p>Let's take a look at how the profiles change over the days. The profiles are stored as text files, which can be read in as Python dictionaries. You can view them at profiles/user2.data.gz/</p>
+
+<p><a href="http://kayacik.ca/papers/MOST14.pdf">In the paper</a>, we used similarity metrics to show how the profile changed over days but even a simple file size check shows that usrerprofile is learning! As you can see below, after the first day, the spatial model is 119K and temporal model is 129K. After a week, the spatial model is 453K and temporal model is 345K.</p>
+
+<pre class="prettyprint">
+kayacik@mbp~/Codes/Git2/userprofiler>ls -lh profiles/user2.data.gz/day00[123456]
+profiles/user2.data.gz/day001:
+total 504
+-rw-r--r--  1 kayacik  staff   119K May  9 21:08 S.model
+-rw-r--r--  1 kayacik  staff   129K May  9 21:08 T.model
+
+profiles/user2.data.gz/day002:
+total 864
+-rw-r--r--  1 kayacik  staff   188K May  9 21:08 S.model
+-rw-r--r--  1 kayacik  staff   180K May  9 21:08 T.model
+-rw-r--r--  1 kayacik  staff    55K May  9 21:08 comfort.data
+
+profiles/user2.data.gz/day003:
+total 1144
+-rw-r--r--  1 kayacik  staff   286K May  9 21:08 S.model
+-rw-r--r--  1 kayacik  staff   228K May  9 21:08 T.model
+-rw-r--r--  1 kayacik  staff    55K May  9 21:08 comfort.data
+
+profiles/user2.data.gz/day004:
+total 1384
+-rw-r--r--  1 kayacik  staff   365K May  9 21:09 S.model
+-rw-r--r--  1 kayacik  staff   266K May  9 21:09 T.model
+-rw-r--r--  1 kayacik  staff    56K May  9 21:09 comfort.data
+
+profiles/user2.data.gz/day005:
+total 1552
+-rw-r--r--  1 kayacik  staff   406K May  9 21:09 S.model
+-rw-r--r--  1 kayacik  staff   304K May  9 21:09 T.model
+-rw-r--r--  1 kayacik  staff    57K May  9 21:09 comfort.data
+
+profiles/user2.data.gz/day006:
+total 1728
+-rw-r--r--  1 kayacik  staff   453K May  9 21:09 S.model
+-rw-r--r--  1 kayacik  staff   345K May  9 21:09 T.model
+-rw-r--r--  1 kayacik  staff    57K May  9 21:09 comfort.data
+</pre>
+
+
+<p>As you train the model with more data, assuming that the user does not change their habits, one can expect the profiles to stabilize. If you'd like to see that in action, you can download user2's extended user behavior data from <a href="http://kayacik.ca/datasets/gcu2/">GCU dataset</a> and repeat the process. You can also view the profiles, although it will be quite a lot to view on terminal:</p>
+
+<pre class="prettyprint">
+cat profiles/user2.data.gz/day006/S.model
+</pre>
+
+<p><img src="../images/S_snapshot.png"></p>
+
+<p><a href="http://kayacik.ca/papers/MOST14.pdf">Check out the paper</a> for more details. If you have any questions / find the code useful or want to use it in your research, let me know!</p>
+</article>
+
+<article>
+<h3>Using Genetic Programming to generate buffer overflow attacks</h3>
+<p><a href="https://github.com/kayacik/linear-gp">linear-gp project on Github</a> contains an experiment setup, which generates buffer overflow attacks against Process 
+Homeostasis (pH) which is an extension of Stide. I wrote it in C++ which tends to be difficult to maintain, given the modern compilers are getting increasingly cautious 
+but here is a mini-recipe to download the code and to run the built-in experiment. Please use the overflow attacks only for educational purposes.</p>
+<p> I tried the following recipe on a Ubuntu 14 host with gcc and git installed. First, grab a copy of the code from github and comile:</p>
+<pre class="prettyprint">
+kayacik@kayacik-X551MA:~/Git$ git clone https://github.com/kayacik/linear-gp
+Cloning into 'linear-gp'...
+remote: Counting objects: 314, done.
+remote: Compressing objects: 100% (5/5), done.
+remote: Total 314 (delta 0), reused 0 (delta 0), pack-reused 309
+Receiving objects: 100% (314/314), 721.77 KiB | 480.00 KiB/s, done.
+Resolving deltas: 100% (106/106), done.
+Checking connectivity... done.
+
+kayacik@kayacik-X551MA:~/Git$ cd linear-gp/
+
+kayacik@kayacik-X551MA:~/Git/linear-gp$ ls
+instruction-sets  LICENSE  makefile  README.md  resources  source  traces
+
+kayacik@kayacik-X551MA:~/Git/linear-gp$ make experiment
+mkdir -p objs/ bin/
+g++ source/pH/pH.cpp -o bin/pH
+g++ source/pH/train_pH.cpp -o bin/train-pH
+g++ source/pHsm/pHsm.cpp -o bin/pHsm
+g++ source/pHsm/train_pHsm.cpp -o bin/train-pHsm
+g++ source/NeuralNetSim/neural_net_sim.cpp -o bin/nnsim
+g++ source/HiddenMarkovModel/HMM.cpp -o bin/hmm
+g++ source/HiddenMarkovModel/train_HMM.cpp -o bin/train-hmm
+g++ -c source/SyscallExperiment.cpp -o objs/SyscallExperiment.o
+g++ -c source/Population.cpp -o objs/Population.o
+g++ -c source/Decoder.cpp -o objs/Decoder.o
+g++ -c source/Operations.cpp -o objs/Operations.o
+g++ -c source/Lists.cpp -o objs/Lists.o
+g++ -c source/ProbabilityDistro.cpp -o objs/ProbabilityDistro.o
+g++ -c source/Functions.cpp -o objs/Functions.o
+g++ -c source/NumberGen.cpp -o objs/NumberGen.o
+g++ objs/SyscallExperiment.o objs/Population.o objs/Decoder.o objs/Operations.o objs/Lists.o
+ objs/ProbabilityDistro.o objs/Functions.o objs/NumberGen.o -o bin/syscall-experiment
+</pre>
+<p> After the project compiles, go to bin directory and run the bash script. The long list of supplied parameters are documented in the code, albeit not in great detail.</p>
+<pre class="prettyprint">
+kayacik@kayacik-X551MA:~/Git/linear-gp$ cd bin
+kayacik@kayacik-X551MA:~/Git/linear-gp/bin$ ./syscall-experiment 500 -1 5 10000 1 100 /tmp/gpfile 0.5 0.9 0.5 0 0 1 0 3 2 1 traceroute pH
+
+</pre>
+<p>This starts the genetic prgraming experiment, searching for a successful traceroute attack against Process Homeostasis. The code prints out a lot of informstion but the interesting part is the mean anomaly rate:</p>
+
+<pre class="prettyprint">
+0	Tour = 0 MeanLen = 254.03 MeanFit = 5.54139 Hits = 471 Mean_Anom = 85.4768 Mean_rawAnom = 99.9592 Mean_Delay = 4.74593e+38 Unique = 500 Px = 0.9 Pm = 0.5 Term.Ct: 0 Max rank: 15
+0	Tour = 100 MeanLen = 239.474 MeanFit = 5.55722 Hits = 468 Mean_Anom = 84.5646 Mean_rawAnom = 99.9463 Mean_Delay = 4.29728e+38 Unique = 500 Px = 0.9 Pm = 0.495 Term.Ct: 0 Max rank: 10
+0	Tour = 200 MeanLen = 229.702 MeanFit = 5.58557 Hits = 468 Mean_Anom = 83.9556 Mean_rawAnom = 99.9209 Mean_Delay = 3.94867e+38 Unique = 500 Px = 0.9 Pm = 0.49 Term.Ct: 1 Max rank: 9
+0	Tour = 300 MeanLen = 222.83 MeanFit = 5.63319 Hits = 472 Mean_Anom = 82.9539 Mean_rawAnom = 99.8878 Mean_Delay = 3.70778e+38 Unique = 500 Px = 0.9 Pm = 0.485 Term.Ct: 0 Max rank: 9
+0	Tour = 400 MeanLen = 219.736 MeanFit = 5.65778 Hits = 475 Mean_Anom = 82.5189 Mean_rawAnom = 99.8724 Mean_Delay = 3.57582e+38 Unique = 500 Px = 0.9 Pm = 0.48 Term.Ct: 2 Max rank: 8
+0	Tour = 500 MeanLen = 218.848 MeanFit = 5.68482 Hits = 479 Mean_Anom = 82.0539 Mean_rawAnom = 99.8492 Mean_Delay = 3.5396e+38 Unique = 500 Px = 0.9 Pm = 0.475 Term.Ct: 0 Max rank: 9
+
+</pre>
+
+<p>Mean anomaly (Mean_Anom) is computed by using Process Homeostasis to scan all the generated attacks. Fitness function and the search operators use this information to guide the search for stealthy attacks. As you can see, Mean_Anom reduces over time, indicating that GP is able to find stealthier attacks. The anomaly rate for the best attacks drop down to 18.29%, a substantial improvement over the initial anomaly rate of 85.47%.</p> 
+
+<p> And that's it! If you want to use GP for a similar project, it would be pretty easy provided that:
+<ul>
+<li>You change the instruction set. Remember, instruction set defines the programming language, in which GP creates programs.
+<li>You write your fitness function. Something that takes a population and returns 'scores' for them. In the built-in experiment, 
+pH is the main component for fitness calculation.
+</ul>
+If you have an application which could use GP, please let me know. I plan to move the code to Python one of these days.
+
+</p>
+
+</article>
+
+<article>
+<h3>Exploratory data analysis with Self Organizing Maps</h3>
+Coming soon.
+</article>
+
+<nav id="primary_nav">
+<ul>
+<li><a href="./research.html">Research</a></li>
+<li><a href="./code.html">Code</a></li>
+<li><a href="./data.html">Data</a></li>
+<li><a href="./publications.html">Publications</a></li>
+<li><a href="./other.html">Other</a></li>
+<li class="top"><a href="#home">Top</a></li>
+</ul>
+</nav><!--end primary_nav-->
+
+</div><!--end wrapper-->
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=2840591; 
+var sc_invisible=1; 
+var sc_security="6d588dc4"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="free web stats"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="http://c.statcounter.com/2840591/0/6d588dc4/1/"
+alt="free web stats"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+</body>
+</html>
