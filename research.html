@@ -7,15 +7,15 @@
 <!--Mobile specific meta goodness :)-->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <!--css-->
-<link rel="stylesheet" href="./styles.css"> 
+<link rel="stylesheet" href="./styles.css">
 <link rel="shortcut icon" href="./images/favicon.ico">
 </head>
 
 <body id="home">
-<div class="wrapper">  
+<div class="wrapper">
 
-<header>      
-<h1 class="logo"><a href="./index.html">G&#252;ne&#351; Kayac&#305;k</a></h1>  
+<header>
+<h1 class="logo"><a href="./index.html">G&#252;ne&#351; Kayac&#305;k</a></h1>
 <a class="to_nav" href="#primary_nav">Menu</a>
 </header>
 
@@ -23,9 +23,9 @@
 <article>
 <h2>Research</h2>
 <p>
-To me, the current state-of-art in computer security focuses on building walls, which is effective for establishing a 
+To me, the current state-of-art in computer security focuses on building walls, which is effective for establishing a
 perimeter but do not adapt to changing conditions. I am more
- interested in adaptive solutions, which are similar to guards in the sense that they are capable of observing, 
+ interested in adaptive solutions, which are similar to guards in the sense that they are capable of observing,
  adapting and reacting to the environment. Within this general view, here are a few projects that I worked on so far.
 </p>
 </article>
@@ -40,9 +40,9 @@ perspective, predictability is everywhere: from your Wifi networks, to your dail
 typical light and noise levels at your home and office. This Marie Curie IIF project aimed to leverage such predictability
 and investigated data-driven implicit
 authentication, in which your smartphone builds many mini-models of your 'normal behavior' taking your temporal and
-spatial patterns into account. The device computes 'comfort scores' continuously, deciding if you should be allowed 
+spatial patterns into account. The device computes 'comfort scores' continuously, deciding if you should be allowed
 access. The less familiar the surroundings, the more cautious the device gets, asking you to authenticate more.</p>
- 
+
 <h4>Related</h4>
 <ul>
 <li><a href="http://www.bbc.com/news/technology-28034539">BBC News Article</a>
@@ -61,11 +61,11 @@ access. The less familiar the surroundings, the more cautious the device gets, a
 <h4>Synopsis</h4>
 <p>Vulnerability testing has been mainly performed by humans. Wouldn't it be interesting if we have a computer
 program that can develop computed programs, exploits in this case, so that we can test our defenses more
-effectively? This was a fun project. I had to learn to write shellcode, inject it into a vulnerable application and 
-watch the infected application misbehave using strace. On the machine learning side, I got to develop my own linear 
-Genetic Programming, which developed programs in arbitrary languages (I tested out assembly, C/C++ and 
-system call-level). Genetic Programming's objective was to create stealthy attacks since it had an anomaly 
-detector opponent, that tried to detect the attacks that it generated. The resulting arms-race between the attacker 
+effectively? This was a fun project. I had to learn to write shellcode, inject it into a vulnerable application and
+watch the infected application misbehave using strace. On the machine learning side, I got to develop my own linear
+Genetic Programming, which developed programs in arbitrary languages (I tested out assembly, C/C++ and
+system call-level). Genetic Programming's objective was to create stealthy attacks since it had an anomaly
+detector opponent, that tried to detect the attacks that it generated. The resulting arms-race between the attacker
 and the defending anomaly detector was quite interesting! </p>
 <h4>Related</h4>
 
@@ -77,27 +77,27 @@ and the defending anomaly detector was quite interesting! </p>
 </ul>
 
 <h4>Abstract</h4>
-<p>This thesis proposes a 'black-box' approach for automating attack generation by way of Evolutionary Computation. 
-The proposed 'black-box' approach employs just the anomaly rate or detection feedback from the detector. Assuming a 
-'black-box' access in vulnerability testing presents a scenario different from a 'white-box' access assumption, since 
-the attacker does not posses sufficient knowledge to constrain the scope of the attack. As such, this thesis contributes 
-by providing a 'black-box' vulnerability testing tool for identifying detector weaknesses and aiding detector research 
+<p>This thesis proposes a 'black-box' approach for automating attack generation by way of Evolutionary Computation.
+The proposed 'black-box' approach employs just the anomaly rate or detection feedback from the detector. Assuming a
+'black-box' access in vulnerability testing presents a scenario different from a 'white-box' access assumption, since
+the attacker does not posses sufficient knowledge to constrain the scope of the attack. As such, this thesis contributes
+by providing a 'black-box' vulnerability testing tool for identifying detector weaknesses and aiding detector research
 in designing detectors which are robust against evasion attacks.</p>
 
-<p>The proposed approach focuses on stack buffer overflow attacks on a 32-bit Intel architecture and aims to optimize the 
-various characteristics of the attack. Three components exist in a common stack buffer overflow attack: the shellcode, 
-NoOP and return address components. Therefore, automation of attack generation is realized in three stages: (1) identifying 
-the suitable NoOP and return address components, (2) designing the shellcode at the assembly level, and (3) designing 
-the shellcode at the system call level. The first and second stage address the evasion of misuse detectors by employing 
+<p>The proposed approach focuses on stack buffer overflow attacks on a 32-bit Intel architecture and aims to optimize the
+various characteristics of the attack. Three components exist in a common stack buffer overflow attack: the shellcode,
+NoOP and return address components. Therefore, automation of attack generation is realized in three stages: (1) identifying
+the suitable NoOP and return address components, (2) designing the shellcode at the assembly level, and (3) designing
+the shellcode at the system call level. The first and second stage address the evasion of misuse detectors by employing
 obfuscation, whereas the third stage addresses the evasion of anomaly detectors by employing mimicry attacks.</p>
 
-<p>In short, the proposed approach takes the form of a 'black-box' search process where the attacks are rewarded according 
-to two main criteria: (a) their ability to carry out the malicious intent, while (b) minimizing or eliminating the 
-detectable attack characteristics. Furthermore, it is demonstrated that there are two parts to buffer overflow attacks: 
-(i) the preamble and (ii) the exploit. Therefore, the anomaly rate of the whole attack is calculated on both parts. 
-Additionally, the proposed approach supports multi-objective optimization, where multiple characteristics of attacks 
-can be improved. The proposed approach is evaluated against six detectors and four vulnerable applications. The results 
-show that attacks which the proposed approach generates under a 'black-box' assumption are as effective as the attacks 
+<p>In short, the proposed approach takes the form of a 'black-box' search process where the attacks are rewarded according
+to two main criteria: (a) their ability to carry out the malicious intent, while (b) minimizing or eliminating the
+detectable attack characteristics. Furthermore, it is demonstrated that there are two parts to buffer overflow attacks:
+(i) the preamble and (ii) the exploit. Therefore, the anomaly rate of the whole attack is calculated on both parts.
+Additionally, the proposed approach supports multi-objective optimization, where multiple characteristics of attacks
+can be improved. The proposed approach is evaluated against six detectors and four vulnerable applications. The results
+show that attacks which the proposed approach generates under a 'black-box' assumption are as effective as the attacks
 generated under a 'white-box' assumption adopted by previous work.</p>
 </article>
 
@@ -133,8 +133,8 @@ the other learning based approaches that use content based features.</p>
 <nav id="primary_nav">
 <ul>
 <li><a href="./research.html">Research</a></li>
-<li><a href="./code.html">Code</a></li>
-<li><a href="./data.html">Data</a></li>
+<!-- <li><a href="./code.html">Code</a></li>
+<li><a href="./data.html">Data</a></li>-->
 <li><a href="./publications.html">Publications</a></li>
 <li><a href="./other.html">Other</a></li>
 <li class="top"><a href="#home">Top</a></li>
@@ -144,9 +144,9 @@ the other learning based approaches that use content based features.</p>
 </div><!--end wrapper-->
 <!-- Start of StatCounter Code for Default Guide -->
 <script type="text/javascript">
-var sc_project=2840591; 
-var sc_invisible=1; 
-var sc_security="6d588dc4"; 
+var sc_project=2840591;
+var sc_invisible=1;
+var sc_security="6d588dc4";
 var scJsHost = (("https:" == document.location.protocol) ?
 "https://secure." : "http://www.");
 document.write("<sc"+"ript type='text/javascript' src='" +
